@@ -9,53 +9,6 @@ os.system('cls')
 path = os.getcwd()
 
 #
-# Checking Everything
-#
-
-log = path + "/check.h"
-if not os.path.exists(log): 
-    print("\nMissing file: .../logs.h")
-    os.system('pause')
-    exit()
-
-print(" [1] Reading logs.h")
-file = open("check.h", "r")
-
-lines = file.readlines() 
-file.close()
-
-lines = lines[15:-1]
-
-line = 0
-line_count = 0
-
-for line in lines:
-    if line != "\n":
-        line_count += 1
-
-print(" [2] Formating timestamp")
-output = open("!check.everything.h","w")
-
-for line in lines:
-
-    i = 1
-    data = line
-    data_lower = data.lower()
-
-    index = data_lower.find("")
-    
-    if index != -1:
-        if i == 1:
-            if data[-41:-40] == ":":
-                formated = data[-43:-28] + " ---> " + data[0:-43] + "\n"
-                output.write(formated)
-            else:
-                output.write(data)
-            i = 0
-
-output.close()
-
-#
 # Extracting Custom Entries
 #
 
@@ -77,7 +30,7 @@ for line in lines:
     if line != "\n":
         line_count += 1
 
-CustomOutput   = open("!check.custom.h","w")
+CustomOutput   = open("!custom.h","w")
 
 count = len(custom)
 
@@ -101,11 +54,7 @@ for line in lines:
         
         if index != -1:
             if i == 1:
-                if data[-41:-40] == ":":
-                    formated = data[-43:-28] + " ---> " + data[0:-43] + "\n"
-                    CustomOutput.write(formated)
-                else:
-                    CustomOutput.write(data)
+                CustomOutput.write(data)
                 i = 0
     j = j + 1
 
@@ -113,3 +62,4 @@ CustomOutput.close()
 
 print("\n [x] DONE \n")
 os.system('pause')
+
